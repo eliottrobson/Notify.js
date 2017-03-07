@@ -12,7 +12,7 @@ Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, de
 
 You'll be notifying in no time:
 
-1. [Download the latest release.](https://github.com/eliottrobson/Notify.js/archive/v1.0.1.zip)
+1. [Download the latest release.](https://github.com/eliottrobson/Notify.js/archive/v1.0.2.zip)
 2. (Optional) Build the source files (TypeScript and SCSS)
 3. Add the scripts and styles to your Pages
 4. Create a notification
