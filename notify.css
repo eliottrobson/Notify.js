@@ -1,0 +1,187 @@
+/*!
+ * Notify.js
+ * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
+ * dependency free customizable experience.
+ *
+ * @version 1.0.0
+ * @author Eliott Robson, https://eliottrobson.me
+ * @link https://github.com/eliottrobson/notify.js
+ */
+@keyframes notify-enter-mobile {
+	0% {
+		transform: translateY(4rem);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes notify-enter-desktop {
+	0% {
+		transform: translateX(calc(3rem + 16rem));
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes notify-enter-push-mobile {
+	0% {
+		transform: translateY(4rem);
+	}
+	100% {
+		transform: translateY(4rem);
+	}
+}
+
+@keyframes notify-enter-push-desktop {
+	0% {
+		margin-bottom: -4rem;
+	}
+	100% {
+		margin-bottom: 1rem;
+	}
+}
+
+@keyframes notify-exit-mobile {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(16rem);
+	}
+}
+
+@keyframes notify-exit-desktop {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(calc(3rem + 16rem));
+	}
+}
+
+@media (max-width: 959px) {
+	#notify-container {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 99999;
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	#notify-container .notify-notification {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 4rem;
+		padding: 1rem;
+		line-height: 2rem;
+		color: #fff;
+		background-color: #323232;
+		animation: notify-enter-mobile 0.3s ease-in-out forwards;
+	}
+	#notify-container .notify-notification:not(:last-child) {
+		animation: notify-exit-mobile 0.3s ease-in-out forwards !important;
+	}
+	#notify-container .notify-notification + .notify-notification {
+		animation: notify-enter-push-mobile 0.3s ease-in-out 0s forwards, notify-enter-mobile 0.3s ease-in-out 0.3s forwards;
+	}
+	#notify-container .notify-notification.notify-exit {
+		animation: notify-exit-mobile 0.3s ease-in-out forwards;
+	}
+	#notify-container .notify-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		color: #ffeb3b;
+		cursor: pointer;
+	}
+	#notify-container .notify-close::before {
+		content: "DISMISS";
+	}
+}
+
+@media (min-width: 960px) {
+	#notify-container {
+		position: fixed;
+		top: 3rem;
+		right: 3rem;
+		z-index: 99999;
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	#notify-container .notify-notification {
+		position: relative;
+		width: 16rem;
+		height: 4rem;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		line-height: 2rem;
+		border-radius: 0.2rem;
+		opacity: .9;
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.03), 0 1px 0 rgba(0, 0, 0, 0.03);
+		animation: notify-enter-desktop 0.3s ease-in-out forwards;
+	}
+	#notify-container .notify-notification:first-child {
+		margin-bottom: 0;
+	}
+	#notify-container .notify-notification + .notify-notification {
+		transform: translateX(20rem);
+		animation: notify-enter-push-desktop 0.3s ease-in-out 0s forwards, notify-enter-desktop 0.3s ease-in-out 0.3s forwards;
+	}
+	#notify-container .notify-notification.notify-exit {
+		animation: notify-exit-desktop 0.3s ease-in-out forwards;
+	}
+	#notify-container .notify-info {
+		color: #fff;
+		background-color: #00bcd4;
+	}
+	#notify-container .notify-success {
+		color: #fff;
+		background-color: #4caf50;
+	}
+	#notify-container .notify-warning {
+		color: #fff;
+		background-color: #ff9800;
+	}
+	#notify-container .notify-error {
+		color: #000;
+		background-color: #f44336;
+	}
+	#notify-container .notify-close {
+		position: absolute;
+		top: .5rem;
+		right: .5rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0.2);
+		border-radius: .75rem;
+		transform: rotate(45deg);
+	}
+	#notify-container .notify-close::before {
+		width: 50%;
+		height: 2px;
+	}
+	#notify-container .notify-close::after {
+		width: 2px;
+		height: 50%;
+	}
+	#notify-container .notify-close::before, #notify-container .notify-close::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: block;
+		background-color: #fff;
+		content: "";
+		transform: translateX(-50%) translateY(-50%);
+	}
+	#notify-container .notify-close:hover {
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+}
