@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Notify.js - Demo and Documentation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/eliottrobson/Notify.js/v1.0.2/notify.css">
+    <style>
+        [v-cloak] {
+            visibility: hidden;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.min.js"></script>
+    <script src="https://cdn.rawgit.com/eliottrobson/Notify.js/v1.0.2/notify.js"></script>
+</head>
+
+<body>
+    <section class="hero is-medium is-dark is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <h1 class="title">
+                            Notify.js (1.0.2)
+                        </h1>
+                        <h2 class="subtitle">
+                            Demo and Documentation
+                        </h2>
+                    </div>
+                    <div class="column is-narrow">
+                        <a href="https://github.com/eliottrobson/Notify.js" class="button is-large is-dark is-inverted">
+                            <span class="icon"><i class="fa fa-github"></i></span>
+                            <span>Download</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h1 class="title">Demo</h1>
+
+        <div id="demo" class="columns">
+            <div class="column">
+                <form @submit.prevent="create">
+                    <h2 class="subtitle">Settings</h2>
+
+                    <label class="label">Message</label>
+                    <p class="control">
+                        <input class="input" type="text" v-model="message">
+                    </p>
+
+                    <label class="label">Type</label>
+                    <p class="control">
+                        <label class="radio">
+                            <input type="radio" name="type" value="info" v-model="type">
+                            Info
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="type" value="success" v-model="type">
+                            Success
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="type" value="warning" v-model="type">
+                            Warning
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="type" value="error" v-model="type">
+                            Error
+                        </label>
+                    </p>
+
+                    <br />
+                    <h2 class="subtitle">Options</h2>
+
+                    <label class="label">Sticky</label>
+                    <p class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" v-model="options.sticky">
+                            Sticky
+                        </label>
+                    </p>
+
+                    <label class="label">Lifespan</label>
+                    <p class="control">
+                        <input class="input" type="number" v-model.number="options.lifespan">
+                    </p>
+
+                    <input type="submit" class="button is-dark" value="Create">
+                </form>
+            </div>
+            <div class="column">
+                <pre v-cloak><code><!--
+                 -->Notify<span class="token punctuation">.</span><span class="token function">{{ type }}</span><span class="token punctuation">(</span><span class="token string">"{{ message }}"</span><template v-if="customSticky || customLifespan"><span class="token punctuation">,</span> <span class="token punctuation">{</span><!--
+                 --><template v-if="customSticky">
+    sticky<span class="token punctuation">:</span> <span class="token boolean">{{ options.sticky }}</span><!--
+                 --></template><template v-else-if="customLifespan">
+    lifespan<span class="token punctuation">:</span> <span class="token symbol">{{ options.lifespan }}</span><!--
+                --></template>
+<span class="token punctuation">}</span></template><span class="token punctuation">)</span><span class="token punctuation">;</span><!--
+            --></code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h1 class="title">Documentation</h1>
+
+        <div class="columns">
+            <div class="column">
+                <div class="content">
+                    <p>In order to create a notification call one of the 4 notification methods:</p>
+                    <pre><code class="language-javascript"><!--
+                    -->Notify<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> options?<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Notify<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> options?<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Notify<span class="token punctuation">.</span><span class="token function">warning</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> options?<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Notify<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> options?<span class="token punctuation">)</span><span class="token punctuation">;</span><!--
+                    --></code></pre>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <p>Each of these accepts 2 parameters:</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>message</td>
+                                <td><code>string</code></td>
+                                <td>The message text</td>
+                                <td><pre><code><span class="token string">"My Notification"</span></code></pre></td>
+                            </tr>
+                            <tr>
+                                <td>options</td>
+                                <td><code>optional object</code></td>
+                                <td>Options</td>
+                                <td><pre><code><span class="token punctuation">{</span>
+    sticky<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    lifespan<span class="token punctuation">:</span> <span class="token symbol">3000</span>
+<span class="token punctuation">{</span></code></pre></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <div class="content">
+                    <p>Each method returns a new Notify.Notification().</p>
+
+                    <pre><code class="language-javascript"><!--
+                    --><span class="token keyword">var</span> notification <span class="token operator">=</span> Notify<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"My Notification"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+notification<span class="token punctuation">.</span><span class="token function">sticky</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+notification<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> notification2 <span class="token operator">=</span> Notify<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Other Notification"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+notification2<span class="token punctuation">.</span><span class="token function">sticky</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><!--
+                    --></code></pre>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <p>Notification methods:</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                                <th>Returns</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sticky</td>
+                                <td>Sets the notification to sticky</td>
+                                <td><code>this Notification</code></td>
+                            </tr>
+                            <tr>
+                                <td>close</td>
+                                <td>Closes a notification</td>
+                                <td><code>this Notification</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <div class="content">
+                    <p>Notification options can be set globally.</p>
+
+                    <pre><code class="language-javascript"><!--
+                    --><span class="token comment">// Use if scss variables are changed - set to match</span>
+Notify<span class="token punctuation">.</span><span class="token property">animation</span> <span class="token operator">=</span> <span class="token symbol">300</span><span class="token punctuation">;</span>
+Notify<span class="token punctuation">.</span><span class="token property">container</span> <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"notify-container"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Default options for future notifications</span>
+Notify<span class="token punctuation">.</span><span class="token property">sticky</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+Notify<span class="token punctuation">.</span><span class="token property">lifespan</span> <span class="token operator">=</span> <span class="token symbol">5000</span><span class="token punctuation">;</span><!--
+                    --></code></pre>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        new Vue({
+            el: "#demo",
+            data: {
+                message: "My Notification",
+                type: "info",
+                options: {
+                    sticky: false,
+                    lifespan: 3000
+                }
+            },
+            computed: {
+                customSticky: function() {
+                    return this.options.sticky !== false;
+                },
+                customLifespan: function() {
+                    return this.options.lifespan !== 3000;
+                }
+            },
+            methods: {
+                create: function() {
+                    Notify[this.type](this.message, this.options);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

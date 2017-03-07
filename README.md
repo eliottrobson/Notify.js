@@ -1,4 +1,4 @@
-# [Notify.js (1.0.1)](https://eliottrobson.me/portfolio/notify-js/)
+# [Notify.js (1.0.2)](https://eliottrobson.me/portfolio/notify-js/)
 
 Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, dependency free customizable experience.
 
@@ -6,6 +6,7 @@ Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, de
 
 - [Quick start](#quick-start)
 - [Documentation](#documentation)
+- [Demo](https://eliottrobson.github.io/Notify.js/)
 
 ## Quick start
 
@@ -82,7 +83,7 @@ If you modify the css you might need to modify the JavaScript, you can do this b
 
 `Notify.animation = 1000;` will set all future notifications to have an animation of 1 second (this should match the SCSS variable).
 
-`Notify.container = document.getElementById("other-notify-container")` will set the container for all future notifications.
+`Notify.container = document.getElementById("other-notify-container");` will set the container for all future notifications.
 
 #### Default Options
 
