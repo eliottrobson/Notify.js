@@ -1,6 +1,14 @@
 # [Notify.js (1.0.2)](https://eliottrobson.me/portfolio/notify-js/)
 
-Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, dependency free customizable experience.
+Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, dependency free customizable experience. Designed for mobile and desktop.
+
+## Screenshots
+
+![Desktop Notification (Sticky)](/docs/desktop-sticky.png?raw=true "Desktop Notification (Sticky)")
+
+![Mobile Notification (Sticky)](/docs/mobile-sticky.png?raw=true "Mobile Notification (Sticky)")
+
+The (X) and DISMISS are sticky only features.
 
 ## Table of contents
 
