@@ -115,6 +115,8 @@ namespace Notify {
             }
 
             this.stuck = true;
+
+            return this;
         }
 
         close() {
@@ -132,6 +134,8 @@ namespace Notify {
             this.notification.className += " notify-exit";
 
             this.closing = true;
+
+            return this;
         }
     }
 }

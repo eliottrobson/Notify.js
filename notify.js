@@ -79,6 +79,7 @@ Notify.lifespan = 3000;
                 clearTimeout(this.timer);
             }
             this.stuck = true;
+            return this;
         };
         Notification.prototype.close = function () {
             var _this = this;
@@ -93,6 +94,7 @@ Notify.lifespan = 3000;
             });
             this.notification.className += " notify-exit";
             this.closing = true;
+            return this;
         };
         return Notification;
     }());
