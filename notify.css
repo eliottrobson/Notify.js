@@ -3,13 +3,13 @@
  * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
  * dependency free customizable experience.
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @author Eliott Robson, https://eliottrobson.me
  * @link https://github.com/eliottrobson/notify.js
  */
 @keyframes notify-enter-mobile {
 	0% {
-		transform: translateY(4rem);
+		transform: translateY(6rem);
 	}
 	100% {
 		transform: translateY(0);
@@ -18,7 +18,7 @@
 
 @keyframes notify-enter-desktop {
 	0% {
-		transform: translateX(calc(3rem + 16rem));
+		transform: translateX(19rem);
 	}
 	100% {
 		transform: translateX(0);
@@ -27,10 +27,10 @@
 
 @keyframes notify-enter-push-mobile {
 	0% {
-		transform: translateY(4rem);
+		transform: translateY(6rem);
 	}
 	100% {
-		transform: translateY(4rem);
+		transform: translateY(6rem);
 	}
 }
 
@@ -49,7 +49,7 @@
 	}
 	100% {
 		opacity: 0;
-		transform: translateY(16rem);
+		transform: translateY(6rem);
 	}
 }
 
@@ -59,7 +59,7 @@
 	}
 	100% {
 		opacity: 0;
-		transform: translateX(calc(3rem + 16rem));
+		transform: translateX(19rem);
 	}
 }
 
@@ -78,8 +78,8 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		height: 4rem;
-		padding: 1rem;
+		height: 6rem;
+		padding: 2rem;
 		line-height: 2rem;
 		color: #fff;
 		background-color: #323232;
@@ -98,6 +98,7 @@
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
+		padding: 1rem;
 		color: #ffeb3b;
 		cursor: pointer;
 	}
@@ -111,6 +112,8 @@
 		position: fixed;
 		top: 3rem;
 		right: 3rem;
+		bottom: auto;
+		left: auto;
 		z-index: 99999;
 		display: flex;
 		flex-direction: column-reverse;
@@ -124,7 +127,7 @@
 		line-height: 2rem;
 		border-radius: 0.2rem;
 		opacity: .9;
-		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.03), 0 1px 0 rgba(0, 0, 0, 0.03);
+		box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.03), 0 0.05rem 0 rgba(0, 0, 0, 0.03);
 		animation: notify-enter-desktop 0.3s ease-in-out forwards;
 	}
 	#notify-container .notify-notification:first-child {

@@ -3,7 +3,7 @@
  * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
  * dependency free customizable experience.
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @author Eliott Robson, https://eliottrobson.me
  * @link https://github.com/eliottrobson/notify.js
  */
@@ -18,15 +18,26 @@ $notify-speed: .3s !default;
 $notify-easing: ease-in-out !default;
 $notify-area-top: 3rem !default;
 $notify-area-right: 3rem !default;
-$notify-notification-width: 16rem !default;
-$notify-notification-height: 4rem !default;
+$notify-area-bottom: auto !default;
+$notify-area-left: auto !default;
+$notify-notification-height-mobile: 6rem !default;
+$notify-notification-padding-mobile: 2rem !default;
+$notify-notification-width-desktop: 16rem !default;
+$notify-notification-height-desktop: 4rem !default;
+$notify-notification-padding-desktop: 1rem !default;
 $notify-notification-radius: .2rem !default;
 $notify-breakpoint: 960px !default;
+$notify-enter-animation-mobile: notify-enter-mobile !default;
+$notify-exit-animation-mobile: notify-exit-mobile !default;
+$notify-enter-push-animation-mobile: notify-enter-push-mobile !default;
+$notify-enter-animation-desktop: notify-enter-desktop !default;
+$notify-exit-animation-desktop: notify-exit-desktop !default;
+$notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
 
 // Enter animation
 @keyframes notify-enter-mobile {
 	0% {
-		transform: translateY($notify-notification-height);
+		transform: translateY($notify-notification-height-mobile);
 	}
 
 	100% {
@@ -36,7 +47,7 @@ $notify-breakpoint: 960px !default;
 
 @keyframes notify-enter-desktop {
 	0% {
-		transform: translateX(calc(#{$notify-area-right} + #{$notify-notification-width}));
+		transform: translateX($notify-area-right + $notify-notification-width-desktop);
 	}
 
 	100% {
@@ -47,17 +58,17 @@ $notify-breakpoint: 960px !default;
 // Push down animation
 @keyframes notify-enter-push-mobile {
 	0% {
-		transform: translateY($notify-notification-height);
+		transform: translateY($notify-notification-height-mobile);
 	}
 
 	100% {
-		transform: translateY($notify-notification-height);
+		transform: translateY($notify-notification-height-mobile);
 	}
 }
 
 @keyframes notify-enter-push-desktop {
 	0% {
-		margin-bottom: -$notify-notification-height;
+		margin-bottom: -$notify-notification-height-desktop;
 	}
 
 	100% {
@@ -73,7 +84,7 @@ $notify-breakpoint: 960px !default;
 
 	100% {
 		opacity: 0;
-		transform: translateY($notify-notification-width);
+		transform: translateY($notify-notification-height-mobile);
 	}
 }
 
@@ -84,7 +95,7 @@ $notify-breakpoint: 960px !default;
 
 	100% {
 		opacity: 0;
-		transform: translateX(calc(#{$notify-area-right} + #{$notify-notification-width}));
+		transform: translateX($notify-area-right + $notify-notification-width-desktop);
 	}
 }
 
@@ -112,33 +123,35 @@ $notify-breakpoint: 960px !default;
 			right: 0;
 			bottom: 0;
 			left: 0;
-			height: $notify-notification-height;
-			padding: 1rem;
-			line-height: $notify-notification-height - 2rem;
+			height: $notify-notification-height-mobile;
+			padding: $notify-notification-padding-mobile;
+			line-height: $notify-notification-height-mobile - (2 * $notify-notification-padding-mobile);
 			color: notify-text-color($notify-default);
 			background-color: $notify-default;
-			animation: notify-enter-mobile $notify-speed $notify-easing forwards;
+			animation: $notify-enter-animation-mobile $notify-speed $notify-easing forwards;
 
 			// Last notification shouldn't exit
 			&:not(:last-child) {
-				animation: notify-exit-mobile $notify-speed $notify-easing forwards !important;
+				animation: $notify-exit-animation-mobile $notify-speed $notify-easing forwards !important;
 			}
 
 			// When we add a new notification, animate existing down
 			& + .notify-notification {
-				animation: notify-enter-push-mobile $notify-speed $notify-easing 0s forwards, notify-enter-mobile $notify-speed $notify-easing $notify-speed forwards;
+				animation: $notify-enter-push-animation-mobile $notify-speed $notify-easing 0s forwards,
+				$notify-enter-animation-mobile $notify-speed $notify-easing $notify-speed forwards;
 			}
 
 			// Animate exit
 			&.notify-exit {
-				animation: notify-exit-mobile $notify-speed $notify-easing forwards;
+				animation: $notify-exit-animation-mobile $notify-speed $notify-easing forwards;
 			}
 		}
 
 		.notify-close {
 			position: absolute;
-			top: 1rem;
-			right: 1rem;
+			top: $notify-notification-padding-mobile - 1rem;
+			right: $notify-notification-padding-mobile - 1rem;
+			padding: 1rem;
 			color: $nofify-close;
 			cursor: pointer;
 
@@ -154,21 +167,23 @@ $notify-breakpoint: 960px !default;
 		position: fixed;
 		top: $notify-area-top;
 		right: $notify-area-right;
+		bottom: $notify-area-bottom;
+		left: $notify-area-left;
 		z-index: 99999;
 		display: flex;
 		flex-direction: column-reverse;
 
 		.notify-notification {
 			position: relative;
-			width: $notify-notification-width;
-			height: $notify-notification-height;
-			padding: 1rem;
+			width: $notify-notification-width-desktop;
+			height: $notify-notification-height-desktop;
+			padding: $notify-notification-padding-desktop;
 			margin-bottom: 1rem;
-			line-height: $notify-notification-height - 2rem;
+			line-height: $notify-notification-height-desktop - (2 * $notify-notification-padding-desktop);
 			border-radius: $notify-notification-radius;
 			opacity: .9;
-			box-shadow: 0 2px 2px rgba(0, 0, 0, .03), 0 1px 0 rgba(0, 0, 0, .03);
-			animation: notify-enter-desktop $notify-speed $notify-easing forwards;
+			box-shadow: 0 .1rem .1rem rgba(0, 0, 0, .03), 0 .05rem 0 rgba(0, 0, 0, .03);
+			animation: $notify-enter-animation-desktop $notify-speed $notify-easing forwards;
 
 			// Last notification shouldn't have margin bottom
 			&:first-child {
@@ -178,12 +193,13 @@ $notify-breakpoint: 960px !default;
 			// When we add a new notification, animate existing down
 			& + .notify-notification {
 				transform: translateX(20rem);
-				animation: notify-enter-push-desktop $notify-speed $notify-easing 0s forwards, notify-enter-desktop $notify-speed $notify-easing $notify-speed forwards;
+				animation: $notify-enter-push-animation-desktop $notify-speed $notify-easing 0s forwards,
+				$notify-enter-animation-desktop $notify-speed $notify-easing $notify-speed forwards;
 			}
 
 			// Animate exit
 			&.notify-exit {
-				animation: notify-exit-desktop $notify-speed $notify-easing forwards;
+				animation: $notify-exit-animation-desktop $notify-speed $notify-easing forwards;
 			}
 		}
 
