@@ -1,4 +1,4 @@
-# [Notify.js (1.0.3)](https://eliottrobson.me/portfolio/notify-js/)
+# Notify.js (1.0.3)
 
 Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth, dependency free customizable experience. Designed for mobile and desktop.
 
