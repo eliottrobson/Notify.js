@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Notify.js - Demo and Documentation</title>
+    <title>Notify.js - Demo</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css">
@@ -61,7 +61,7 @@
                             Notify.js (1.0.3)
                         </h1>
                         <h2 class="subtitle">
-                            Demo and Documentation
+                            Demo
                         </h2>
                     </div>
                     <div class="column is-narrow">
@@ -129,119 +129,6 @@
             </div>
             <div class="column">
                 <pre v-cloak><code v-html="source"></code></pre>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h1 class="title">Documentation</h1>
-
-        <div class="columns">
-            <div class="column">
-                <div class="content">
-                    <p>In order to create a notification call one of the 4 notification methods:</p>
-                    <pre><code class="language-javascript">Notify.info(message, options?);
-Notify.success(message, options?);
-Notify.warning(message, options?);
-Notify.error(message, options?);</code></pre>
-                </div>
-            </div>
-            <div class="column">
-                <div class="content">
-                    <p>Each of these accepts 2 parameters:</p>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                                <th>Example</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>message</td>
-                                <td><code>string</code></td>
-                                <td>The message text</td>
-                                <td><pre><code class="language-javascript">"My Notification"</code></pre></td>
-                            </tr>
-                            <tr>
-                                <td>options</td>
-                                <td><code>optional object</code></td>
-                                <td>Options</td>
-                                <td><pre><code class="language-javascript">{
-    sticky: false,
-    lifespan: 3000
-}</code></pre></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="columns">
-            <div class="column">
-                <div class="content">
-                    <p>Each method returns a new Notify.Notification().</p>
-
-                    <pre><code class="language-javascript">var notification = Notify.info("My Notification");
-
-notification.sticky();
-notification.close();
-
-var notification2 = Notify.info("Other Notification");
-notification2.sticky().close();</code></pre>
-                </div>
-            </div>
-            <div class="column">
-                <div class="content">
-                    <p>Notification methods:</p>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Method</th>
-                                <th>Description</th>
-                                <th>Returns</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>sticky</td>
-                                <td>Sets the notification to sticky</td>
-                                <td><code>this Notification</code></td>
-                            </tr>
-                            <tr>
-                                <td>close</td>
-                                <td>Closes a notification</td>
-                                <td><code>this Notification</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="columns">
-            <div class="column">
-                <div class="content">
-                    <p>Notification options can be set globally.</p>
-
-                    <pre><code class="language-javascript">// Use if scss variables are changed - set to match
-Notify.animation = 300;
-Notify.container = document.getElementById("notify-container");
-
-// Default options for future notifications
-Notify.sticky = true;
-Notify.lifespan = 5000;</code></pre>
-                </div>
-            </div>
-            <div class="column">
-                <div class="content">
-
-                </div>
             </div>
         </div>
     </section>
