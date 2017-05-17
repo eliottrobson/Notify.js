@@ -3,7 +3,7 @@
  * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
  * dependency free customizable experience.
  *
- * @version 1.0.3
+ * @version 1.0.4
  * @author Eliott Robson, https://eliottrobson.me
  * @link https://github.com/eliottrobson/notify.js
  */
@@ -122,17 +122,13 @@ namespace Notify {
         close() {
             if (this.closing) return;
 
-            let actions = ["animationend", "webkitAnimationEnd", "MSAnimationEnd", "oAnimationEnd"];
+            let pull = this.notification.previousSibling !== null ? 2 : 1;
 
-            actions.forEach(action => {
-                this.notification.addEventListener(action, event => {
-                    let element = <HTMLDivElement> event.target;
-                    element.parentElement.removeChild(element);
-                });
-            });
+            setTimeout(() => {
+                this.notification.parentElement.removeChild(this.notification);
+            }, (Notify.animation * pull));
 
             this.notification.className += " notify-exit";
-
             this.closing = true;
 
             return this;

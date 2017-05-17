@@ -3,7 +3,7 @@
  * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
  * dependency free customizable experience.
  *
- * @version 1.0.3
+ * @version 1.0.4
  * @author Eliott Robson, https://eliottrobson.me
  * @link https://github.com/eliottrobson/notify.js
  */
@@ -18,7 +18,7 @@
 
 @keyframes notify-enter-desktop {
 	0% {
-		transform: translateX(19rem);
+		transform: translateX(21rem);
 	}
 	100% {
 		transform: translateX(0);
@@ -59,7 +59,16 @@
 	}
 	100% {
 		opacity: 0;
-		transform: translateX(19rem);
+		transform: translateX(21rem);
+	}
+}
+
+@keyframes notify-exit-pull-desktop {
+	0% {
+		margin-bottom: 1rem;
+	}
+	100% {
+		margin-bottom: -4rem;
 	}
 }
 
@@ -120,7 +129,7 @@
 	}
 	#notify-container .notify-notification {
 		position: relative;
-		width: 16rem;
+		width: 18rem;
 		height: 4rem;
 		padding: 1rem;
 		margin-bottom: 1rem;
@@ -134,11 +143,11 @@
 		margin-bottom: 0;
 	}
 	#notify-container .notify-notification + .notify-notification {
-		transform: translateX(20rem);
+		transform: translateX(21rem);
 		animation: notify-enter-push-desktop 0.3s ease-in-out 0s forwards, notify-enter-desktop 0.3s ease-in-out 0.3s forwards;
 	}
 	#notify-container .notify-notification.notify-exit {
-		animation: notify-exit-desktop 0.3s ease-in-out forwards;
+		animation: notify-exit-desktop 0.3s ease-in-out 0s forwards, notify-exit-pull-desktop 0.3s ease-in-out 0.3s forwards;
 	}
 	#notify-container .notify-info {
 		color: #fff;
@@ -175,7 +184,7 @@
 		width: 2px;
 		height: 50%;
 	}
-	#notify-container .notify-close::before, #notify-container .notify-close::after {
+	#notify-container .notify-close::after, #notify-container .notify-close::before {
 		position: absolute;
 		top: 50%;
 		left: 50%;

@@ -3,7 +3,7 @@
  * Notify.js is a sleek and powerful toast generator built on CSS3 for a smooth,
  * dependency free customizable experience.
  *
- * @version 1.0.3
+ * @version 1.0.4
  * @author Eliott Robson, https://eliottrobson.me
  * @link https://github.com/eliottrobson/notify.js
  */
@@ -22,7 +22,7 @@ $notify-area-bottom: auto !default;
 $notify-area-left: auto !default;
 $notify-notification-height-mobile: 6rem !default;
 $notify-notification-padding-mobile: 2rem !default;
-$notify-notification-width-desktop: 16rem !default;
+$notify-notification-width-desktop: 18rem !default;
 $notify-notification-height-desktop: 4rem !default;
 $notify-notification-padding-desktop: 1rem !default;
 $notify-notification-radius: .2rem !default;
@@ -33,6 +33,7 @@ $notify-enter-push-animation-mobile: notify-enter-push-mobile !default;
 $notify-enter-animation-desktop: notify-enter-desktop !default;
 $notify-exit-animation-desktop: notify-exit-desktop !default;
 $notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
+$notify-exit-pull-animation-desktop: notify-exit-pull-desktop !default;
 
 // Enter animation
 @keyframes notify-enter-mobile {
@@ -99,6 +100,17 @@ $notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
 	}
 }
 
+// Pull up animation
+@keyframes notify-exit-pull-desktop {
+	0% {
+		margin-bottom: 1rem;
+	}
+
+	100% {
+		margin-bottom: -$notify-notification-height-desktop;
+	}
+}
+
 // Functions
 @function notify-text-color($color) {
 	@if (lightness($color) > 50) {
@@ -137,8 +149,7 @@ $notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
 
 			// When we add a new notification, animate existing down
 			& + .notify-notification {
-				animation: $notify-enter-push-animation-mobile $notify-speed $notify-easing 0s forwards,
-				$notify-enter-animation-mobile $notify-speed $notify-easing $notify-speed forwards;
+				animation: $notify-enter-push-animation-mobile $notify-speed $notify-easing 0s forwards, $notify-enter-animation-mobile $notify-speed $notify-easing $notify-speed forwards;
 			}
 
 			// Animate exit
@@ -192,14 +203,13 @@ $notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
 
 			// When we add a new notification, animate existing down
 			& + .notify-notification {
-				transform: translateX(20rem);
-				animation: $notify-enter-push-animation-desktop $notify-speed $notify-easing 0s forwards,
-				$notify-enter-animation-desktop $notify-speed $notify-easing $notify-speed forwards;
+				transform: translateX($notify-area-right + $notify-notification-width-desktop);
+				animation: $notify-enter-push-animation-desktop $notify-speed $notify-easing 0s forwards, $notify-enter-animation-desktop $notify-speed $notify-easing $notify-speed forwards;
 			}
 
 			// Animate exit
 			&.notify-exit {
-				animation: $notify-exit-animation-desktop $notify-speed $notify-easing forwards;
+				animation: $notify-exit-animation-desktop $notify-speed $notify-easing 0s forwards, $notify-exit-pull-animation-desktop $notify-speed $notify-easing $notify-speed forwards;
 			}
 		}
 
@@ -244,7 +254,7 @@ $notify-enter-push-animation-desktop: notify-enter-push-desktop !default;
 				height: 50%;
 			}
 
-			&::before, &::after {
+			&::after, &::before {
 				position: absolute;
 				top: 50%;
 				left: 50%;
